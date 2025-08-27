@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Perdóname, Mi Amor 💕</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Pétalos de rosa cayendo */
+    .falling-petals {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+      font-size: 25px;
+      color: rgba(255, 182, 193, 0.8);
+      animation: fallDown 8s infinite linear;
+    }
+
+    @keyframes fallDown {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Corazón central brillante */
+    .central-heart {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 5em;
+      color: #ff1744;
+      animation: heartGlow 2s ease-in-out infinite;
+      z-index: 2;
+      text-shadow: 0 0 30px rgba(255, 23, 68, 0.8);
+    }
+
+    @keyframes heartGlow {
+      0%, 100% {
+        transform: translateX(-50%) scale(1);
+        text-shadow: 0 0 30px rgba(255, 23, 68, 0.8);
+      }
+      50% {
+        transform: translateX(-50%) scale(1.2);
+        text-shadow: 0 0 50px rgba(255, 23, 68, 1);
+      }
+    }
+
+    /* Contenedor principal */
+    .forgiveness-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Tarjeta de perdón */
+    .forgiveness-card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(15px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 30px;
+      padding: 50px;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+      animation: cardPulse 4s ease-in-out infinite;
+      margin-top: 100px;
+    }
+
+    @keyframes cardPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+      }
+      50% {
+        transform: scale(1.03);
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .forgiveness-title {
+      font-size: 3.2em;
+      color: #fff;
+      margin-bottom: 30px;
+      text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+      animation: titleGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes titleGlow {
+      0%, 100% {
+        color: #fff;
+        text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+      }
+      50% {
+        color: #ffeaa7;
+        text-shadow: 3px 3px 25px rgba(255, 234, 167, 0.6);
+      }
+    }
+
+    .forgiveness-message {
+      font-size: 1.4em;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 35px;
+      text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+      min-height: 200px;
+    }
+
+    /* Cursor parpadeante */
+    .typing-cursor {
+      border-right: 3px solid rgba(255, 255, 255, 0.9);
+      animation: blinkCursor 1s infinite;
+    }
+
+    @keyframes blinkCursor {
+      0%, 50% {
+        border-color: rgba(255, 255, 255, 0.9);
+      }
+      51%, 100% {
+        border-color: transparent;
+      }
+    }
+
+    /* Rosas decorativas */
+    .decorative-roses {
+      font-size: 3em;
+      margin: 25px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .decorative-roses span {
+      display: inline-block;
+      animation: roseBloom 3s ease-in-out infinite;
+    }
+
+    .decorative-roses span:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .decorative-roses span:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .decorative-roses span:nth-child(3) {
+      animation-delay: 1s;
+    }
+
+    @keyframes roseBloom {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+        color: #ff6b9d;
+      }
+      50% {
+        transform: scale(1.3) rotate(10deg);
+        color: #ff1744;
+      }
+    }
+
+    /* Botón de perdón */
+    .forgiveness-button {
+      background: linear-gradient(45deg, #ff6b9d, #c44569);
+      border: none;
+      padding: 18px 40px;
+      border-radius: 60px;
+      color: white;
+      font-size: 1.2em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
+      margin-top: 25px;
+      position: relative;
+      overflow: hidden;
+      animation: buttonPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes buttonPulse {
+      0%, 100% {
+        box-shadow: 0 15px 30px rgba(255, 107, 157, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 20px 40px rgba(255, 107, 157, 0.5);
+        transform: scale(1.02);
+      }
+    }
+
+    .forgiveness-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .forgiveness-button:hover::before {
+      left: 100%;
+    }
+
+    .forgiveness-button:hover {
+      transform: translateY(-8px) scale(1.1);
+      box-shadow: 0 30px 60px rgba(255, 107, 157, 0.6);
+      background: linear-gradient(45deg, #ff1744, #ad1457);
+      animation: buttonHoverPulse 0.5s ease-in-out;
+    }
+
+    @keyframes buttonHoverPulse {
+      0%, 100% {
+        transform: translateY(-8px) scale(1.1);
+      }
+      50% {
+        transform: translateY(-8px) scale(1.15);
+      }
+    }
+
+    .forgiveness-button:active {
+      transform: translateY(-2px) scale(1.05);
+      transition: all 0.1s ease;
+    }
+
+    /* Luces brillantes */
+    .sparkles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .sparkle {
+      position: absolute;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      animation: sparkleShine 3s infinite;
+    }
+
+    @keyframes sparkleShine {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(180deg);
+      }
+    }
+
+    @keyframes buttonSuccess {
+      0%, 100% {
+        transform: scale(1.1);
+      }
+      25% {
+        transform: scale(1.2);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+      75% {
+        transform: scale(1.25);
+      }
+    }
+
+    @keyframes buttonRestore {
+      0% {
+        transform: scale(1.1);
+      }
+      50% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes heartFloat {
+      0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg) scale(0);
+      }
+      10% {
+        opacity: 1;
+        transform: translateY(-20px) rotate(45deg) scale(1);
+      }
+      90% {
+        opacity: 1;
+        transform: translateY(-200px) rotate(315deg) scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-250px) rotate(360deg) scale(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .forgiveness-card {
+        padding: 30px;
+        margin: 10px;
+        margin-top: 120px;
+      }
+      
+      .forgiveness-title {
+        font-size: 2.5em;
+      }
+      
+      .forgiveness-message {
+        font-size: 1.2em;
+      }
+      
+      .central-heart {
+        font-size: 3.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Corazón central -->
+  <div class="central-heart">❤️</div>
+
+  <!-- Pétalos cayendo -->
+  <div class="falling-petals"></div>
+
+  <!-- Luces brillantes -->
+  <div class="sparkles"></div>
+
+  <!-- Contenido principal -->
+  <div class="forgiveness-container">
+    <div class="forgiveness-card">
+      <h1 class="forgiveness-title">Perdóname, Mi Amor 💕</h1>
+      
+      <div class="forgiveness-message">
+        <p id="message" class="typing-cursor"></p>
+      </div>
+
+      <div class="decorative-roses">
+        <span>🌹</span>
+        <span>💖</span>
+        <span>🌹</span>
+      </div>
+
+      <button class="forgiveness-button" onclick="sendForgiveness()">
+        Perdóname mi Niña Bonita 💝
+      </button>
+    </div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="backgroundMusic" autoplay loop preload="auto" style="display: none;">
+    <source src="music/mi-nina-bonita.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+  <script>
+    // Mensajes de perdón románticos
+    const forgivenessMessages = [
+      "Mi amor, me equivoqué y lo sé. Quiero pedirte perdón de todo corazón porque eres lo más importante en mi vida 💕",
+      "Sé que mis acciones te lastimaron, y eso me duele más de lo que puedes imaginar. Prometo ser mejor, por ti, por nosotros 🌹",
+      "No hay excusas para lo que hice, solo hay arrepentimiento sincero y la promesa de que esto no volverá a pasar jamás 💖",
+      "Eres mi reina, mi tesoro, mi todo. Perdóname por hacerte sentir menos de lo perfecta que eres para mí 👑",
+      "Quiero recuperar tu confianza, tu sonrisa, tu amor. Haré todo lo que esté en mis manos para demostrarte que tu confianza me importa mucho mi niña bonita 🌙✨"
+    ];
+
+    let currentMessage = 0;
+    let i = 0;
+    const speed = 60;
+    const messageElement = document.getElementById("message");
+
+    function typeWriter() {
+      if (currentMessage < forgivenessMessages.length) {
+        if (i < forgivenessMessages[currentMessage].length) {
+          messageElement.innerHTML += forgivenessMessages[currentMessage].charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        } else {
+          // Mensaje completado, esperar y continuar
+          setTimeout(() => {
+            messageElement.innerHTML = "";
+            i = 0;
+            currentMessage++;
+            if (currentMessage < forgivenessMessages.length) {
+              typeWriter();
+            } else {
+              // Reiniciar ciclo
+              currentMessage = 0;
+              setTimeout(typeWriter, 5000);
+            }
+          }, 4500);
+        }
+      }
+    }
+
+    // Crear pétalos cayendo
+    function createFallingPetals() {
+      const petalsContainer = document.querySelector('.falling-petals');
+      setInterval(() => {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.innerHTML = ['🌹', '🌺', '🌸', '💐'][Math.floor(Math.random() * 4)];
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDuration = (Math.random() * 3 + 6) + 's';
+        petalsContainer.appendChild(petal);
+
+        setTimeout(() => {
+          petal.remove();
+        }, 9000);
+      }, 1500);
+    }
+
+    // Crear luces brillantes
+    function createSparkles() {
+      const sparklesContainer = document.querySelector('.sparkles');
+      setInterval(() => {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.innerHTML = '✨';
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        sparklesContainer.appendChild(sparkle);
+
+        setTimeout(() => {
+          sparkle.remove();
+        }, 3000);
+      }, 800);
+    }
+
+    // Función del botón de perdón
+    function sendForgiveness() {
+      const button = document.querySelector('.forgiveness-button');
+      
+      // Animación de click
+      button.style.animation = 'none';
+      button.style.transform = 'scale(0.95)';
+      
+      setTimeout(() => {
+        button.innerHTML = '💝 Te amo mucho mi hermoso atardecer 💝';
+        button.style.background = 'linear-gradient(45deg, #00b894, #00cec9)';
+        button.style.transform = 'scale(1.1)';
+        button.style.animation = 'buttonSuccess 1s ease-in-out';
+      }, 100);
+      
+      // Crear lluvia de corazones dorados con más variedad
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          const hearts = ['💛', '💚', '💙', '💜', '🧡', '❤️'];
+          heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+          heart.style.position = 'fixed';
+          heart.style.left = Math.random() * window.innerWidth + 'px';
+          heart.style.top = Math.random() * window.innerHeight + 'px';
+          heart.style.fontSize = (Math.random() * 2 + 1.5) + 'em';
+          heart.style.pointerEvents = 'none';
+          heart.style.animation = 'heartFloat ' + (Math.random() * 2 + 3) + 's ease-out forwards';
+          heart.style.zIndex = '1000';
+          document.body.appendChild(heart);
+          
+          setTimeout(() => heart.remove(), 5000);
+        }, i * 100);
+      }
+
+      // Restaurar botón con animación
+      setTimeout(() => {
+        button.style.animation = 'buttonRestore 0.5s ease-in-out';
+        setTimeout(() => {
+          button.innerHTML = ' Perdóname mi Niña Bonita 💝';
+          button.style.background = 'linear-gradient(45deg, #ff6b9d, #c44569)';
+          button.style.transform = 'scale(1)';
+          button.style.animation = 'buttonPulse 2.5s ease-in-out infinite';
+        }, 250);
+      }, 4000);
+    }
+
+    // Configurar música
+    const audio = document.getElementById('backgroundMusic');
+    audio.volume = 0.25;
+
+    // Inicializar todo
+    window.onload = function() {
+      createFallingPetals();
+      createSparkles();
+      
+      // Iniciar escritura
+      setTimeout(typeWriter, 1500);
+      
+      // Reproducir música
+      setTimeout(() => {
+        audio.play().catch(function(error) {
+          console.log('Reproducción automática bloqueada');
+        });
+      }, 2000);
+    };
+
+    // Activar música con interacción
+    document.addEventListener('click', function() {
+      if (audio.paused) {
+        audio.play();
+      }
+    }, { once: true });
+
+    // Efectos del mouse
+    document.addEventListener('mousemove', function(e) {
+      if (Math.random() > 0.85) {
+        const love = document.createElement('div');
+        love.innerHTML = '💕';
+        love.style.position = 'fixed';
+        love.style.left = e.clientX + 'px';
+        love.style.top = e.clientY + 'px';
+        love.style.pointerEvents = 'none';
+        love.style.fontSize = '1.5em';
+        love.style.animation = 'sparkleShine 2s ease-out forwards';
+        love.style.zIndex = '999';
+        document.body.appendChild(love);
+        
+        setTimeout(() => love.remove(), 2000);
+      }
+    });
+  </script>
+</body>
+</html>
